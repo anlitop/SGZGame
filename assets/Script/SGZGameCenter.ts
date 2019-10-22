@@ -1,4 +1,4 @@
-import CharacterFactory from "./Factory/CharacterFactory";
+import ActorFactory from "./Factory/ActorFactory"
 import { create } from "domain";
 
 // Learn TypeScript:
@@ -25,7 +25,7 @@ export default class SGZGameCenter{
         return this.m_sgzGameCenter
     }
     //游戏通用系统
-    private m_characterFactory:CharacterFactory=new CharacterFactory(this);
+    private m_ActorFactory:ActorFactory=new ActorFactory(this);
 
     //游戏系统
 
@@ -35,7 +35,7 @@ export default class SGZGameCenter{
 
     public Initinal():void{
         console.log("init")
-        this.m_characterFactory.Init();
+        this.m_ActorFactory.Init();
         
     }
     public Update():void{}
@@ -44,7 +44,7 @@ export default class SGZGameCenter{
 
     //产生英雄
     public CreateHero(){
-        this.m_characterFactory.Creat("Hero")
+        this.m_ActorFactory.Creat("Hero")
     }
 
     

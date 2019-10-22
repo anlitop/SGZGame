@@ -13,8 +13,9 @@ import SGZGameCenter from "../SGZGameCenter";
 const {ccclass, property} = cc._decorator;
 
 @ccclass
-export default class CharacterFactory{
-    private FactoryMethod:{[key:string]:Function}={}
+export default class ActorFactory{
+    private FactoryMethod:{[key:string]:Function}={};
+    private static ActorID:number=0;
     private m_sgzGameCenter:SGZGameCenter=null;
     
     constructor(center:SGZGameCenter){
@@ -32,6 +33,12 @@ export default class CharacterFactory{
 
     //产生英雄
     private CreatHero():void{
+        let aid:number=ActorFactory.GetActorID();
+        //let actor=new 
         console.log("create hero")
+    }
+    private static GetActorID():number{
+        ActorFactory.ActorID++;
+        return ActorFactory.ActorID;
     }
 }
