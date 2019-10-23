@@ -1,4 +1,6 @@
 import SGZGameCenter from "../SGZGameCenter";
+import Entity from "../Entity/Entity";
+import Player from "../Entity/Player/Player";
 
 // Learn TypeScript:
 //  - [Chinese] https://docs.cocos.com/creator/manual/zh/scripting/typescript.html
@@ -25,6 +27,7 @@ export default class ActorFactory{
     public Init():void{
         
         this.FactoryMethod["Hero"]=this.CreatHero
+        this.FactoryMethod["Player"]=this.CreatPlayer
     }
     public Creat(heroType:string){
         
@@ -34,11 +37,28 @@ export default class ActorFactory{
     //产生英雄
     private CreatHero():void{
         let aid:number=ActorFactory.GetActorID();
+        
         //let actor=new 
+        console.log("create hero222")
+    }
+    //产生玩家
+    private CreatPlayer():void{
+        let aid:number=ActorFactory.GetActorID();
+        cc.loader.loadRes("Entity/Player",(err,prefab)=>{
+            let e:cc.Node=cc.instantiate(prefab) 
+            let e_component:Player=e.addComponent("Player")
+            e_component.VInit(aid)
+            
+        })
         console.log("create hero")
+        
+        
+        
     }
     private static GetActorID():number{
+        
         ActorFactory.ActorID++;
+        
         return ActorFactory.ActorID;
     }
 }

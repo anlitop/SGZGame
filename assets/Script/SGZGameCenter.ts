@@ -44,7 +44,7 @@ export default class SGZGameCenter{
 
     //产生英雄
     public CreateHero(){
-        this.m_ActorFactory.Creat("Hero")
+        this.m_ActorFactory.Creat("Player")
     }
 
     

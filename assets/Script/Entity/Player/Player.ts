@@ -1,4 +1,6 @@
-import Entity from "./Entity";
+import Entity from "../Entity";
+import EntityComponent from "../EntityComponent";
+import BaseInfo from "./BaseInfo";
 
 // Learn TypeScript:
 //  - [Chinese] https://docs.cocos.com/creator/manual/zh/scripting/typescript.html
@@ -13,18 +15,14 @@ import Entity from "./Entity";
 const {ccclass, property} = cc._decorator;
 
 @ccclass
-export default class EntityComponent{
-    protected p_owner:Entity=null;
+export default class Player extends Entity {
 
-    public static EntityComponentID:number=0
 
-    public get EntityComponentID(){
-        return EntityComponent.EntityComponentID;
+    public VInit(aid:number):void{
+        super.VInit(aid)
+        this.AddEntityComponent(new BaseInfo());
+        console.log(this.m_components[BaseInfo.EntityComponentID].EntityComponentID)
     }
-    public VInit():void{}
-    public VDestory():void{}
-    public VUpdate():void{}
-    private SetOwner(entity:Entity):void{
-        this.p_owner=entity;
-    } 
+
+    
 }

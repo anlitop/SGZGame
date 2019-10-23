@@ -1,4 +1,4 @@
-import Entity from "./Entity";
+import EntityComponent from "./EntityComponent";
 
 // Learn TypeScript:
 //  - [Chinese] https://docs.cocos.com/creator/manual/zh/scripting/typescript.html
@@ -13,18 +13,35 @@ import Entity from "./Entity";
 const {ccclass, property} = cc._decorator;
 
 @ccclass
-export default class EntityComponent{
-    protected p_owner:Entity=null;
+export default class Entity extends cc.Component {
 
-    public static EntityComponentID:number=0
+    protected m_entityID:number=-1;
+    protected m_components:{[componentID:number]:EntityComponent}={};
 
-    public get EntityComponentID(){
-        return EntityComponent.EntityComponentID;
+    
+    public get EntityId(){
+        
+        return this.m_entityID;
     }
-    public VInit():void{}
+
+    public GetEntityComponent(cid:number):string{
+
+        //加一个判定
+
+        return ("从m_components返回")
+    }
+
+    public VInit(aid:number):void{
+
+        this.m_entityID=aid;
+
+        //component
+        
+    }
     public VDestory():void{}
     public VUpdate():void{}
-    private SetOwner(entity:Entity):void{
-        this.p_owner=entity;
-    } 
+
+    protected AddEntityComponent(e_component:EntityComponent):void{
+        this.m_components[e_component.EntityComponentID]=e_component;
+    }
 }

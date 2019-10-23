@@ -1,4 +1,4 @@
-import Entity from "./Entity";
+import EntityComponent from "../EntityComponent";
 
 // Learn TypeScript:
 //  - [Chinese] https://docs.cocos.com/creator/manual/zh/scripting/typescript.html
@@ -13,18 +13,19 @@ import Entity from "./Entity";
 const {ccclass, property} = cc._decorator;
 
 @ccclass
-export default class EntityComponent{
-    protected p_owner:Entity=null;
-
-    public static EntityComponentID:number=0
-
-    public get EntityComponentID(){
-        return EntityComponent.EntityComponentID;
+export default class BaseInfo extends EntityComponent {
+    
+    private m_name:string;
+    public static EntityComponentID=1;
+    public get Name(){
+        return this.m_name;
     }
-    public VInit():void{}
-    public VDestory():void{}
-    public VUpdate():void{}
-    private SetOwner(entity:Entity):void{
-        this.p_owner=entity;
-    } 
+    public set Name(value:string){
+        this.m_name=value;
+    }
+    public VInit(){
+        super.VInit();
+        
+    }
+    
 }
