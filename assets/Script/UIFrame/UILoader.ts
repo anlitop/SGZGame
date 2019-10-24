@@ -78,7 +78,7 @@ export default class UILoader {
             }
             callfun(assets);
             assets.forEach((asset) => {
-                this._parseStaticRes(asset, tag);
+                this._p3(asset, tag);
             });
         }.bind(this));
     }

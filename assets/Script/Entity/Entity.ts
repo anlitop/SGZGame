@@ -1,4 +1,5 @@
 import EntityComponent from "./EntityComponent";
+import EntityManager from "./EntityManager";
 
 // Learn TypeScript:
 //  - [Chinese] https://docs.cocos.com/creator/manual/zh/scripting/typescript.html
@@ -14,7 +15,7 @@ const {ccclass, property} = cc._decorator;
 
 @ccclass
 export default class Entity extends cc.Component {
-
+    protected m_entityManager:EntityManager=null;
     protected m_entityID:number=-1;
     protected m_components:{[componentID:number]:EntityComponent}={};
 
@@ -31,10 +32,10 @@ export default class Entity extends cc.Component {
         return ("从m_components返回")
     }
 
-    public VInit(aid:number):void{
-
+    public VInit(aid:number,manager:EntityManager):void{
+        this.m_entityManager=manager;
         this.m_entityID=aid;
-
+        this.m_entityManager.AddEntityToDict(this);
         //component
         
     }
@@ -42,6 +43,8 @@ export default class Entity extends cc.Component {
     public VUpdate():void{}
 
     protected AddEntityComponent(e_component:EntityComponent):void{
+        
+        
         this.m_components[e_component.EntityComponentID]=e_component;
     }
 }

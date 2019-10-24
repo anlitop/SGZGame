@@ -28,7 +28,7 @@ export default class MainProcedure extends IProcedure {
     public ProcedureBegin():void{
         console.log("main开始")
         SGZGameCenter.Instance.Initinal()
-        SGZGameCenter.Instance.CreateHero();
+        
     }
     //结束
     public ProcedureEnd():void{
@@ -36,6 +36,7 @@ export default class MainProcedure extends IProcedure {
     }
     //更新
     public ProcedureUpdate():void{
+        //SGZGameCenter.Instance.Update();
        // console.log("mainupdate")
     }
 

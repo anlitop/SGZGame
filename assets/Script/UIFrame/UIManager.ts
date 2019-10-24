@@ -77,6 +77,7 @@ export default class UIManager extends cc.Component {
     public async ShowUIForms(uiFormName: string, obj?: any) {
         if(uiFormName == "" || uiFormName == null) return ;
         if(this.UIFormIsShowing(uiFormName)) {
+            console.log(uiFormName)
             cc.log(`${uiFormName}窗体已经在显示`);
             return ;        
         }
@@ -184,7 +185,6 @@ export default class UIManager extends cc.Component {
             break;
         }
         this._MapAllUIForms[strUIFormPath] = baseUIForm;
-        
         return baseUIForm;
     }
 

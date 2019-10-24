@@ -15,17 +15,13 @@ const {ccclass, property} = cc._decorator;
 @ccclass
 export default class BaseInfo extends EntityComponent {
     
-    private m_name:string;
-    public static EntityComponentID=1;
+    private m_name:string="BaseInfo";
+    public static EntityComponentID=0;
     public get Name(){
         return this.m_name;
     }
-    public set Name(value:string){
-        this.m_name=value;
-    }
     public VInit(){
         super.VInit();
-        
     }
     
 }

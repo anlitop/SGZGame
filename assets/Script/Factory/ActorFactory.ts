@@ -1,6 +1,8 @@
 import SGZGameCenter from "../SGZGameCenter";
 import Entity from "../Entity/Entity";
 import Player from "../Entity/Player/Player";
+import EntityManager from "../Entity/EntityManager";
+import UIManager from "../UIFrame/UIManager";
 
 // Learn TypeScript:
 //  - [Chinese] https://docs.cocos.com/creator/manual/zh/scripting/typescript.html
@@ -29,31 +31,25 @@ export default class ActorFactory{
         this.FactoryMethod["Hero"]=this.CreatHero
         this.FactoryMethod["Player"]=this.CreatPlayer
     }
-    public Creat(heroType:string){
-        
-        this.FactoryMethod[heroType]();
+    public Creat(heroType:string,node:cc.Node){
+        console.log(node);
+        let aid:number=ActorFactory.GetActorID();
+        this.FactoryMethod[heroType](node,aid,this.m_sgzGameCenter.EntityManager);
     }
 
     //产生英雄
-    private CreatHero():void{
-        let aid:number=ActorFactory.GetActorID();
+    private CreatHero(node:cc.Node,id:number,manager:EntityManager):void{
         
-        //let actor=new 
-        console.log("create hero222")
+        
     }
     //产生玩家
-    private CreatPlayer():void{
-        let aid:number=ActorFactory.GetActorID();
-        cc.loader.loadRes("Entity/Player",(err,prefab)=>{
-            let e:cc.Node=cc.instantiate(prefab) 
-            let e_component:Player=e.addComponent("Player")
-            e_component.VInit(aid)
-            
-        })
-        console.log("create hero")
+    private CreatPlayer(node:cc.Node,id:number,manager:EntityManager):void{
         
-        
-        
+        let player:Player=node.addComponent("Player")
+        //设定id
+        //加入管理
+        //增加组件
+        player.VInit(id,manager)
     }
     private static GetActorID():number{
         
@@ -61,4 +57,5 @@ export default class ActorFactory{
         
         return ActorFactory.ActorID;
     }
+    
 }

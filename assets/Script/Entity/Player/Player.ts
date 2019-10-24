@@ -1,6 +1,7 @@
 import Entity from "../Entity";
 import EntityComponent from "../EntityComponent";
 import BaseInfo from "./BaseInfo";
+import EntityManager from "../EntityManager";
 
 // Learn TypeScript:
 //  - [Chinese] https://docs.cocos.com/creator/manual/zh/scripting/typescript.html
@@ -18,10 +19,10 @@ const {ccclass, property} = cc._decorator;
 export default class Player extends Entity {
 
 
-    public VInit(aid:number):void{
-        super.VInit(aid)
+    public VInit(aid:number,manager:EntityManager):void{
+        super.VInit(aid,manager)
         this.AddEntityComponent(new BaseInfo());
-        console.log(this.m_components[BaseInfo.EntityComponentID].EntityComponentID)
+        console.log(this.m_components[BaseInfo.EntityComponentID])
     }
 
     

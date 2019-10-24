@@ -15,6 +15,10 @@ export default class Helloworld extends cc.Component {
     start () {
         UIIndependentManager.getInstance().setLoadingForm("UIForm/LoadingForm");
         UIManager.GetInstance().ShowUIForms("UIForm/LoginForm");
+        UIManager.GetInstance().ShowUIForms("UIForm/LoginForm");
+        UIManager.GetInstance().ShowUIForms("UIForm/LoginForm");
+        UIManager.GetInstance().ShowUIForms("UIForm/LoginForm");
+        UIManager.GetInstance().ShowUIForms("UIForm/LoginForm");
 
         this.buttonPlus.addClick(() => {
             cc.log("点击事件!");
