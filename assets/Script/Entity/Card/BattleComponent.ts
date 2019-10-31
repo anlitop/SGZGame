@@ -9,9 +9,34 @@
 //  - [English] http://www.cocos2d-x.org/docs/creator/manual/en/scripting/life-cycle-callbacks.html
 
 const {ccclass, property} = cc._decorator;
-import EntityComponent from "./EntityComponent"
+
+import EntityComponent from "../EntityComponent";
+import Entity          from "../Entity"
 
 @ccclass
-export default class EntityData extends EntityComponent {
+export default class BattleComponent extends EntityComponent{
+    private m_speed:number=10;
+    private m_current_hp:number=1000;
+    private m_current_atk:number=10;
+
+
+    public get Speed(){
+        return this.m_speed;
+    }
+    public get Hp(){
+        return this.m_current_hp;
+    }
+    public get Attack(){
+        return this.m_current_atk;
+    }
+
+    
+
+
+
+
+        
+
+    
     
 }

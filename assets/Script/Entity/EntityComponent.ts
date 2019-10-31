@@ -15,6 +15,9 @@ const {ccclass, property} = cc._decorator;
 @ccclass
 export default class EntityComponent{
     protected p_owner:Entity=null;
+    constructor(owner:Entity){
+        this.SetOwner(owner)
+    }
 
     public static EntityComponentID:number=0
 
@@ -24,7 +27,7 @@ export default class EntityComponent{
     public VInit():void{}
     public VDestory():void{}
     public VUpdate():void{}
-    private SetOwner(entity:Entity):void{
+    protected SetOwner(entity:Entity):void{
         this.p_owner=entity;
     } 
 }

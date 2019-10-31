@@ -1,6 +1,7 @@
 import ActorFactory from "./Factory/ActorFactory"
 import { create } from "domain";
 import EntityManager from "./Entity/EntityManager";
+import BattleManager from "./Manager/BattleManager";
 
 // Learn TypeScript:
 //  - [Chinese] https://docs.cocos.com/creator/manual/zh/scripting/typescript.html
@@ -28,9 +29,10 @@ export default class SGZGameCenter{
     //游戏通用系统
     public ActorFactory:ActorFactory=new ActorFactory(this);
     public EntityManager:EntityManager=new EntityManager(this);
+    
 
     //游戏系统
-
+    public BattleManger:BattleManager=new BattleManager(this);
 
     //游戏界面
 
@@ -38,7 +40,8 @@ export default class SGZGameCenter{
     public Initinal():void{
         
         this.ActorFactory.Init();
-        this.EntityManager.ShowEntity('Entity/Player')
+        this.BattleManger.VInit();
+        
         
         
         
@@ -50,9 +53,10 @@ export default class SGZGameCenter{
 
 
     //产生英雄
-    public CreateHero(node:cc.Node){
-        this.ActorFactory.Creat("Player",node)
+    public Create(node:cc.Node,name:string){
+        this.ActorFactory.Creat(name,node);
     }
+    
 
     
 }

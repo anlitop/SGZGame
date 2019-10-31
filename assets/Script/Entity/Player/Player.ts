@@ -21,7 +21,7 @@ export default class Player extends Entity {
 
     public VInit(aid:number,manager:EntityManager):void{
         super.VInit(aid,manager)
-        this.AddEntityComponent(new BaseInfo());
+        this.AddEntityComponent(new BaseInfo(this));
         console.log(this.m_components[BaseInfo.EntityComponentID])
     }
 

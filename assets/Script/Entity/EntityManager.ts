@@ -16,7 +16,7 @@ const {ccclass, property} = cc._decorator;
 
 @ccclass
 export default class EntityManager{
-    private m_SGZGameCenter:SGZGameCenter:null;
+    private m_SGZGameCenter:SGZGameCenter=null;
     private m_EntityResCache:{[key:string]:cc.Prefab}={}
     private m_ActorFactory:ActorFactory=null;
     private static _instance:EntityManager=null;
@@ -26,13 +26,22 @@ export default class EntityManager{
     constructor(center:SGZGameCenter){
         this.m_SGZGameCenter=center;
     }
-    //对外接口
     public async ShowEntity(name:string,obj?:any){
-        return await this.LoadEntityByResCache(name).then(
-            (node)=>{
-                this.m_SGZGameCenter.CreateHero(node)
-            }
-        )
+        let node :cc.Node=null;
+        node=await this.LoadNode(name,obj) as cc.Node
+        this.m_SGZGameCenter.Create(node,name)
+        return node
+    }
+    //对外接口
+    public async LoadNode(name:string,obj?:any){
+        let node:cc.Node=null
+        if (node==null){
+            node=await this.LoadEntityByResCache(name) as cc.Node
+        }
+        console.log(node);
+        return node
+        
+        
     }
     public AddEntityToDict(entity:Entity){
         this.EntityDict[entity.EntityId]=entity;

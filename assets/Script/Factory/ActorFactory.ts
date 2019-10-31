@@ -3,6 +3,7 @@ import Entity from "../Entity/Entity";
 import Player from "../Entity/Player/Player";
 import EntityManager from "../Entity/EntityManager";
 import UIManager from "../UIFrame/UIManager";
+import Card from "../Entity/Card/Card";
 
 // Learn TypeScript:
 //  - [Chinese] https://docs.cocos.com/creator/manual/zh/scripting/typescript.html
@@ -30,6 +31,7 @@ export default class ActorFactory{
         
         this.FactoryMethod["Hero"]=this.CreatHero
         this.FactoryMethod["Player"]=this.CreatPlayer
+        this.FactoryMethod["Card"]=this.CreatCard
     }
     public Creat(heroType:string,node:cc.Node){
         console.log(node);
@@ -50,6 +52,16 @@ export default class ActorFactory{
         //加入管理
         //增加组件
         player.VInit(id,manager)
+    }
+    //产生卡牌
+    private CreatCard(node:cc.Node,id:number,manager:EntityManager):void{
+        
+        let player:Card=node.addComponent("Card")
+        //设定id
+        //加入管理
+        //增加组件
+        player.VInit(id,manager)
+        
     }
     private static GetActorID():number{
         

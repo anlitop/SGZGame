@@ -25,11 +25,11 @@ export default class Entity extends cc.Component {
         return this.m_entityID;
     }
 
-    public GetEntityComponent(cid:number):string{
+    public GetEntityComponent(cid:number):EntityComponent{
 
         //加一个判定
 
-        return ("从m_components返回")
+        return (this.m_components[cid])
     }
 
     public VInit(aid:number,manager:EntityManager):void{
@@ -37,14 +37,14 @@ export default class Entity extends cc.Component {
         this.m_entityID=aid;
         this.m_entityManager.AddEntityToDict(this);
         //component
+        this.BulidEntityComponent();
         
     }
     public VDestory():void{}
     public VUpdate():void{}
 
     protected AddEntityComponent(e_component:EntityComponent):void{
-        
-        
         this.m_components[e_component.EntityComponentID]=e_component;
     }
+    protected BulidEntityComponent():void{}
 }
